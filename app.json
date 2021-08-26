@@ -25,6 +25,11 @@
         "backgroundColor": "#FFFFFF"
       }
     },
+    "sdkVersion": "41.0.0",
+    "platforms": [
+      "android",
+      "ios"
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     }
