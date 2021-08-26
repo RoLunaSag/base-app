@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
 	View,
 	ScrollView,
@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import BackgroundApp from "../../components/BackgroundApp";
-import { getPeople, saveForm } from "../../services/ApiService";
+import { getPeople } from "../../services/ApiService";
 import styles from "./WelcomeScreenStyle";
 import { Avatar, Text } from "react-native-elements";
 import CardInfo from "../../components/CardInfo";
@@ -16,6 +16,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default function WelcomeScreen(props) {
 	const [people, setPeople] = useState([]);
+	const scrollRef = useRef(); 
 
 	useEffect(() => {
 		async function loadPeople() {
@@ -30,12 +31,21 @@ export default function WelcomeScreen(props) {
 		loadPeople();
 	}, []);
 
+	const onPressTouch = () => {
+        scrollRef.current.scrollTo({
+			x: 0,
+            y: 0,
+            animated: true,
+        });
+		console.log('bajar')
+ }
+
 	return (
 		<View style={[styles.fill]}>
 			<BackgroundApp />
 			{/* Cuerpo de la aplicacion */}
 			<View style={[styles.container]}>
-				<ScrollView	>
+			<ScrollView ref={scrollRef}>
 					<View style={[styles.alignItemsCenter]}>
 						<View style={styles.baseVerticalMargin}>
 							<Image
@@ -68,6 +78,7 @@ export default function WelcomeScreen(props) {
 									styles.doubleVerticalMargin,
 								]}
 								activeOpacity={0.5}
+								onPress={onPressTouch}
 							>
 								<Image
 									style={{ height: 50, width: 50 }}
@@ -78,6 +89,7 @@ export default function WelcomeScreen(props) {
 									{"Quiero saber más"}
 								</Text>
 							</TouchableOpacity>
+							
 							<View style={styles.doubleVerticalMargin}>
 								<Image
 									style={styles.sizeAstro}
@@ -135,7 +147,7 @@ export default function WelcomeScreen(props) {
 					</View>
 
 					<View>
-						<ScrollView style={[styles.responsiveHorizontalMargin]} horizontal={true} pagingEnabled={true}>
+						<ScrollView style={[styles.responsiveHorizontalMargin]} showsHorizontalScrollIndicator={false} horizontal={true} pagingEnabled={true}>
 							<View
 								style={[
 									styles.smallHorizontalMargin,

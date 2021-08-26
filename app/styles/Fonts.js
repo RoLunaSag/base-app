@@ -1,4 +1,6 @@
 const size = {
+	ultra: 46,
+	mega: 38,
 	huge: 32,
 	big: 24,
 	title: 20,
@@ -9,6 +11,7 @@ const size = {
 };
 
 const weight = {
+	rude: '900',
 	bold: '700',
 	medium: '500',
 	regular: '400',

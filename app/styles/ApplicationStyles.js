@@ -38,6 +38,9 @@ const ApplicationStyles = {
 		absolute: {
 			position: "absolute",
 		},
+		relative: {
+			position: "relative",
+		},
 		setToBot: {
 			bottom: 0,
 			right: 0,
